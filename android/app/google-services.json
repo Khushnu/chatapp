@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "710303932161",
+    "project_id": "chatapp-dade8",
+    "storage_bucket": "chatapp-dade8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710303932161:android:f45d62df1e6f2c79a38500",
+        "android_client_info": {
+          "package_name": "com.example.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710303932161-3kjhv1kicm8o9vkuopq5seclhn1qdl7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhXgfp9M9ivJCH7XHGrO1ZMIj7Wiwr-do"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710303932161-3kjhv1kicm8o9vkuopq5seclhn1qdl7p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
