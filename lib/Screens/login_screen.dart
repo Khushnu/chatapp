@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               const LabelTextWidget(
                 text: 'ChitChat',
-                fontsize: 2,
+                fontsize: 3,
                 bold: FontWeight.bold,
               ),
               const LabelTextWidget(text: 'Login to Start Chat', fontsize: 2),
