@@ -19,8 +19,8 @@ class _ButtonWidgetState extends State<ButtonWidget> {
     return  GestureDetector(
                 onTap: widget.ontap,
                child: Container(
-                height: screenHeight < 500 ? screenHeight * 0.1 - 30 : screenHeight * 0.1 - 24,
-                width: screenWidth < 400 ? screenWidth * 0.9 + 21 : screenWidth * 0.9 + 21,
+                height: screenWidth < 400 ? screenHeight * 0.1 - 30 : screenHeight * 0.1 - 24,
+                width: screenHeight < 500 ? screenWidth * 0.9 + 21 : screenWidth * 0.9 + 21,
                 decoration: BoxDecoration(
                   color: Colors.red.shade300, 
                   borderRadius: BorderRadius.circular(20)

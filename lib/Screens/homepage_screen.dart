@@ -12,9 +12,9 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
    Map<String, dynamic> userMap = <String, dynamic>{};
-
+  
   final search = TextEditingController();
   Future<void> onSearch() async { 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance; 
@@ -32,7 +32,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
 
 
-  String chatroomId(String user1, String user2){
+
+
+  String chatroomId(String user1, String user2,){
     if(user1[0].toLowerCase().codeUnits[0] > user2.toLowerCase().codeUnits[0]){
       return '$user1$user2';
     } else {
@@ -46,6 +48,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
       body: SafeArea(child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
+          Text("${firebaseAuth.currentUser!.displayName}"),
+          Text("${firebaseAuth.currentUser!.email}"),
           Row(
             children: [
               IconButton(onPressed: (){ 
@@ -101,7 +105,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         trailing: InkWell(
                           onTap: () {
                             FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-                             String chatrooID =  chatroomId(firebaseAuth.currentUser!.displayName ?? "" , data['name']);
+                             String chatrooID =  chatroomId(firebaseAuth.currentUser!.uid , data['name']);
                            
                             Navigator.push(context, MaterialPageRoute(builder: (_) => ChatRoomScreem(chatroomId: chatrooID, usermap: data,)));},
                           child: const Icon(Icons.chat)),

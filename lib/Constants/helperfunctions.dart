@@ -6,10 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HelperFunction {
 
-static String userLogginedKey = '';
-static String userNameKey = "userNameKey"; 
-static String userEmailKey = "userEmailKey";
-
+static String userLogginedKey = "LOGGEDINKEY";
 
 
 Future getData() async { 
@@ -21,12 +18,6 @@ print(alldata);
 
 
 }
-// static getuserLogin() async {
-//   SharedPreferences sp = await SharedPreferences.getInstance();
-//   print(userLogginedKey); 
-//   return sp.getString(userLogginedKey);
-// }
-
 static Future<User?> createAccount(String name, String userLogginedKey, String password) async { 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance; 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -62,17 +53,17 @@ return null;
 }
 
 
-static Future<User?> login(userLogginedKey , String password) async{ 
+static Future<User?> login(String email , String password) async{ 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;  
+  userLogginedKey = email;
   // FirebaseFirestore firestore = FirebaseFirestore.instance;
-  SharedPreferences sp = await SharedPreferences.getInstance(); 
+   SharedPreferences sp = await SharedPreferences.getInstance(); 
 
   try {
     User? user = (await firebaseAuth.signInWithEmailAndPassword(email: userLogginedKey, password: password)).user; 
     if(user != null){ 
       print('login succesful');  
-       sp.setString('email', userLogginedKey ); 
-       
+      await sp.setString('email', userLogginedKey ); 
       return user;
     } else { 
       print('failed login');  

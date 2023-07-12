@@ -1,11 +1,10 @@
-import 'package:chatapp/Constants/helperfunctions.dart';
+import 'package:chatapp/Constants/notification_services.dart';
 import 'package:chatapp/Screens/homepage_screen.dart';
 import 'package:chatapp/Screens/login_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'firebase_options.dart';
 
 void main() async {
@@ -24,7 +23,6 @@ void main() async {
   runApp(const MyApp()); 
 }
 
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -34,32 +32,25 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> { 
   bool _isSingedint = false;
-  String email = '';
+ NotificationServiices notificationServiices  = NotificationServiices();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     userLogedin();
+    notificationServiices.requestNotificationPermissions();
   }
 
   userLogedin() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    
-     var e =  sp.getString(email);  
-     print(e);
-     if(sp.getString(email)!.isNotEmpty){
+    var token = sp.getString('email')?? "";
+     print(token);
+     if(token.isNotEmpty){
       setState(() {
         _isSingedint = true;
       });
      }
-      // HelperFunction.getuserLogin().then((value) {
-      //   if(value != null){
-      //     setState(() {
-      //           _isSingedint = value; 
-      //     });
-        
-      //   }
-      // });
+
   }
 
   @override

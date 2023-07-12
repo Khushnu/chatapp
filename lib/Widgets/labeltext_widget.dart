@@ -9,6 +9,6 @@ class LabelTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    
-    return Text(text, style: TextStyle(fontSize: screenHeight < 500 || screenWidth < 400 ? fontsize * screenHeight * 0.1 - 150 : fontsize * screenHeight * 0.1 - 120, fontWeight: bold),);
+    return Text(text, style: TextStyle(fontSize: screenHeight < 500 && screenWidth < 400 ? fontsize * screenHeight * 0.1 - 150 : fontsize * screenHeight * 0.1 - 145, fontWeight: bold),);
   }
 }

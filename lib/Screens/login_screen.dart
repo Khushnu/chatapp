@@ -4,6 +4,7 @@ import 'package:chatapp/Screens/signup_screen.dart';
 import 'package:chatapp/Widgets/labeltext_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Widgets/buttonlogin_widget.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -135,7 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 14,
                       ),
                       ButtonWidget(
-                          ontap: () {
+                          ontap: () async {
+                            SharedPreferences sp = await SharedPreferences.getInstance();
                             if (formkey.currentState!.validate()) {
                               if (email.text.isNotEmpty &&
                                   password.text.isNotEmpty) {
@@ -149,6 +151,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (value != null) {
                                   setState(() {
                                     islogin = false;
+                                    var e = sp.setString('email', email.text);
+
+                                    print(e);
                                   });
                                   Navigator.push(
                                       context,
