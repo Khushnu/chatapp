@@ -1,6 +1,7 @@
 import 'package:chatapp/Constants/notification_services.dart';
 import 'package:chatapp/Screens/homepage_screen.dart';
 import 'package:chatapp/Screens/login_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,9 +19,15 @@ void main() async {
           projectId: DefaultFirebaseOptions.web.projectId)
      );
   } else  {
+
     await Firebase.initializeApp();
    }
+   FirebaseMessaging.onBackgroundMessage(_firebasemessagingbackgroundHandler);
   runApp(const MyApp()); 
+}
+@pragma('vm:entry-point')
+Future<void> _firebasemessagingbackgroundHandler(RemoteMessage remoteMessage) async {
+await Firebase.initializeApp(); 
 }
 
 class MyApp extends StatefulWidget {
@@ -38,11 +45,13 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
     userLogedin();
-    notificationServiices.requestNotificationPermissions();
+    notificationServiices.requestNotificationPermission();
+    notificationServiices.setupInteractMessage(context);
+    notificationServiices.forgroundMessage();
     notificationServiices.getDeviceToken().then((value) {
       print('device Token: $value');
     }); 
-    notificationServiices.firebaseInit();
+    notificationServiices.firebaseInit(context);
   }
 
   userLogedin() async {
